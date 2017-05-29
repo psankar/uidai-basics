@@ -5,7 +5,7 @@
 Aadhaar is a 12 digit unique-identity number issued to all Indian residents based on their biometric and demographic data. The data is collected by the Unique Identification Authority of India (UIDAI), a statutory authority established on 12 July 2016 by the Government of India, under the Ministry of Electronics and Information Technology, under the provisions of the Aadhaar Act 2016
 
 ## Purpose of this document
-I had plenty of questions when I wanted to develop an application that would use Aadhaar. I could not find reliable, up-to-date information about Aadhaar easily from the UIDAI website via Google (As of May 2017). 
+I had plenty of questions when I wanted to develop an application that would use Aadhaar. I could not find reliable, up-to-date information about Aadhaar easily from the UIDAI website via Google (As of May 2017), because there were many broken links and some conflicting texts (across versions). I try to capture all the fundamental knowledge in a single place.
 
 I made this github project to capture my learnings with the hope that it may be useful for others too. This is not an official document and is not endorsed by anyone in the Government of India. It is purely a personal hobby project. 
 
@@ -60,3 +60,22 @@ Under the Fast track, a AUA can become a KUA iff:
 * Performed a minimum of 3 Lakh transactions in a maximum period of 3 months
 
 In addition to the above requirements, there are other statutory requirements like, the board of the company / partners should pass a formal resolution expressing their intent to become a AUA/KUA, etc. The complete list of these requirements can be found [here](https://authportal.uidai.gov.in/static/Eligibility_Criteria_for_AUA%20_KUA.pdf).
+
+
+
+## Devices, SDKs, APIs etc.
+UIDAI relies on [STQC](http://www.stqc.gov.in/) for the certification of devices (such as fingerprint scanners, iris scanners, etc.) that could be used to work with their servers. Most of the device certifications have an expiry date. It means that the manufacturer has to get re-certified. When you are choosing a device, make sure to choose a device that will remain valid for a long time.
+
+The document containing the list of fingerprint scanners that are approved is presently [here](http://www.stqc.gov.in/sites/upload_files/stqc/files/List_BDCS_FPS_Auth_ver3.1.1_23May2017.pdf). This link gets changed often. If you find the link to be invalid, please raise an issue.
+
+Surprisingly (at least to me), even foreign manufactured devices are allowed. In fact, most of the fingerprint scanners seem to be manufactured in Korea, Taiwan, China. There are some devices like one from 3M and one from Mantra MFS100 are made in India.
+
+The devices cannot work without a SDK. Some of the devices have Android SDK. Almost all the devices expect Windows 8 or later for working correctly. Most device SDKs require a .NET runtime. None of the approved scanners work with Mac OS X (afaics). It is strongly recommended that you get a decent windows laptop and a fairly modern Android tablet/phone (beyond Marshmallow) to ensure things work reliably. Most of the manufacturers are greedy and charge extra for the SDK. I have found Mantra to be giving SDKs for free, for even Linux machines (Ubuntu and openSUSE) and they manufacture locally. YMMV.
+
+Once an SDK is available, you can build the aadhaar PID blocks for consuming the uidai APIs. The PID blocks can be built in either XML or with [protobufs](https://developers.google.com/protocol-buffers/) as the data interchange format. The authentication API version 2.0 specification is available [here](https://uidai.gov.in/images/FrontPageUpdates/aadhaar_authentication_api_2_0.pdf). 
+
+All the authentications performed by a Sub-AUA, AUA/KUA, ASA, etc. need to be logged at each level and maintained, for compliance. The fingerprints however should not be stored. It is unclear if/when there will be audits for these logs and what will be the reaction for non-compliance. Any request that is made and is not responded within 24 hours will be cancelled. Any retries for the same request should be made after this window only (Needs citation, heard from a jio agent).
+
+In addition to the fingerprint scanner SDK, there are SDKs provided by some companies, which help you to connect to the UIDAI servers, using their servers/software as the AUA/KUA. So, effectively you become a Sub-AUA/SA to these companies. They charge a fee (typically 1Rupee per authentication, 5Rupees per eKYC, etc.) for each transaction in addition to other subscription charges. This is probably the easiest way for you to make use of aadhar data. However, keep in mind that the aadhar data should never go out of country. If some of these AUAs (for whom you are working as a Sub-AUA) route the traffic to a foreign nation, it is unclear who will be held liable.
+
+UIDAI gives a sample Java client that works against UIDAI that is available [here](https://uidai.gov.in/images/authDoc/uidai-kyc-client-2.0-src.zip). This link is also broken most of the times, I recommend that you visit the [developer site](https://authportal.uidai.gov.in/web/uidai/developer) time to time to see if there are new clients. There are some other sample projects in C/C++ contributed by third parties, but they are all mostly obsolete developed against older version of the API, so I am not linking them here. I really wish that UIDAI provides proper, well-documented REST interfaces for getting these data and also provide official libraries for at least major languages like Java, Python, Go, Javascript, PHP and Ruby. It is even unclear if we can even contribute these, because the UIDAI sources are not open sourced.
