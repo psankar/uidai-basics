@@ -1,13 +1,13 @@
-# Fundamental concepts and tutorials for UIDAI
-** Unofficial, unauthorized, personal project. Use at your own risk. Any feedback/improvements are welcome **
+# UIDAI / Aadhar fundamentals
+**Unofficial, unauthorized, personal project. Use at your own risk. Any feedback/improvements are welcome**
 
 ## What is Aadhaar / UIDAI ?
 Aadhaar is a 12 digit unique-identity number issued to all Indian residents based on their biometric and demographic data. The data is collected by the Unique Identification Authority of India (UIDAI), a statutory authority established on 12 July 2016 by the Government of India, under the Ministry of Electronics and Information Technology, under the provisions of the Aadhaar Act 2016
 
 ## Purpose of this document
-I had plenty of questions when I wanted to develop an application that would use Aadhaar. I could not find reliable, up-to-date information about Aadhaar easily from the UIDAI website via Google (As of May 2017), because there were many broken links and some conflicting texts (across versions). I try to capture all the fundamental knowledge in a single place.
+I had plenty of questions when I wanted to develop an application that would use Aadhaar. I could not find reliable, up-to-date information about Aadhaar easily from the UIDAI website via Google (As of May 2017), because there were many broken links and some conflicting texts (across versions). I try to capture all the fundamental knowledge about developing applications on top of UIDAI / Aadhar in a single place.
 
-I made this github project to capture my learnings with the hope that it may be useful for others too. This is not an official document and is not endorsed by anyone in the Government of India. It is purely a personal hobby project. 
+I made this github project to capture my learnings with the hope that it may be useful for others too. This is not an official document and is **not** endorsed by anyone in the Government of India. It is purely a personal hobby project. 
 
 If you find any mistakes or feedback, feel free to raise an issue or send a Pull Request with improvements or corrections. 
 
