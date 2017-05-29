@@ -36,9 +36,27 @@ It is not simple to become an ASA. As mentioned earlier, there are a few conditi
 
 It is safe to assume that an overwhelming majority of the people reading this document, would not be able to become an ASA. If you have 100 crores annual turnover, you will not be looking at random github projects to become an ASA. So we will move to the next section.
 
-##### AUA and KUA
-AUA stands for **A**uthentication **U**ser **A**gency. KUA stands for **K**YC **U**ser **A**gency, where KYC stands for **K**now **Y**our **C**ustomer. If you want to start a company / project which wants to make use of Aadhaar data, it is very likely that you want to get yourself registered as a AUA or KUA. 
+#### AUA and KUA
+**AUA** stands for **A**uthentication **U**ser **A**gency. **KUA** stands for e-**K**YC **U**ser **A**gency, where **KYC** stands for **K**now **Y**our **C**ustomer. If you want to start a company / project which wants to make use of Aadhaar data, it is very likely that you want to get yourself registered as a AUA or KUA. 
 
-We also have the complete list of all registered and live [AUAs](https://uidai.gov.in/images/list_of_live_aua.pdf) and [KUAs](https://uidai.gov.in/images/list_of_live_kua.pdf). If your application wants to just authenticate an user (either by biometric such as fingerprint or retina) you can get yourself registered as a AUA. But if you want more details, apart from a Yes/No, such as the permanent address in the Aadhar database, Phone number, etc. then you need to register as a KUA.
+We also have the complete list of all registered and live [AUAs](https://uidai.gov.in/images/list_of_live_aua.pdf) and [KUAs](https://uidai.gov.in/images/list_of_live_kua.pdf). If your application wants to just authenticate an user (either by biometrics (such as fingerprint or retina) or by OTP or by demographics (address, etc.)) you can get yourself registered as a AUA. But if you want more details, such as the permanent address, Phone number, etc. of the citizens as in the aadhar database, then you need to register yourself as a KUA.
 
-These AUAs and KUAs do not talk directly with the CIDR servers where the data is stored. These AUAs and KUAs have to talk to one of the ASAs that we covered earlier.
+These AUAs and KUAs can not talk directly with the CIDR servers where the data is stored. These AUAs and KUAs have to talk to one of the ASAs that we covered earlier. 
+
+However, becoming a AUA/KUA is also not straight-forward. First, a company has to become a Sub-AUA(SA) and then become an AUA and then only can become a KUA. To become a Sub-AUA, a company has to make a contract with another AUA. The contract will be overseen by the UIDAI. The Sub-AUA will get a **unique Sub-AUA code**. All the authentication/e-KYC requests of the Sub-AUA will go through the AUA, who then forwards it to an ASA, which in turn gets the data from the CIDR.
+
+##### Sub-AUA to AUA
+A company after working as a Sub-AUA and performing at least (10,000 transactions / month for 10 months) or at least (25,000 transactions / month for last 4 months) is eligible to become an AUA. The unique Sub-AUA code can be used to verify the transaction count.
+
+##### AUA to KUA
+A company that has worked as an AUA can be promoted to a KUA in one of two tracks, a **Regular track** and a **Fast track**. 
+
+Under the Regular track, a AUA can become a KUA iff: 
+* It has a minimum Rupees 2 Crores of paid up capital or annual turnover of minimum rupees 5 Crores during the last financial year
+* Performed a minimum of 1 Lakh transactions/month in the last 3 months
+
+Under the Fast track, a AUA can become a KUA iff:
+* It has a minimum Rupees 4 Crores of paid up capital or annual turnover of minimum Rupees 10 Crores during the last financial year
+* Performed a minimum of 3 Lakh transactions in a maximum period of 3 months
+
+In addition to the above requirements, there are other statutory requirements like, the board of the company / partners should pass a formal resolution expressing their intent to become a AUA/KUA, etc. The complete list of these requirements can be found [here](https://authportal.uidai.gov.in/static/Eligibility_Criteria_for_AUA%20_KUA.pdf).
